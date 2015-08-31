@@ -14,19 +14,19 @@
       <p>{{ description }}</p>
       <ul class="list-inline">
         {{#with author}}
-          <li><a href="{{ pathFor 'memberDetail' }}"><img class="img-circle" width=30 height=30 src="{{profile.thumbnailUrl}}"> By {{profile.name}}</a></li>
+          <li><a href="{{ pathFor 'memberDetail' }}"><img class="img-circle" width=30 height=30 src="{{profile.thumbnailUrl}}">  {{_ "By"}} {{profile.name}}</a></li>
+        <li>{{_ "points_count" count=profile.points}}</li>
         {{/with}}
-        <li>{{ points }} Points</li>
         {{#if hasComments}}
-          <li><a href="{{ pathFor 'topicDetail' }}">{{numberOfComments}} Comments</a></li>
+          <li><a href="{{ pathFor 'topicDetail' }}"> {{_ "comments_count" count=numberOfComments}}</a></li>
         {{/if}}
         {{#if presented}}
           {{#with meetup}}
-            <li><a href="{{ pathFor 'meetupDetail' }}"><i class="ion-checkmark"></i> Presented</a></li>
+            <li><a href="{{ pathFor 'meetupDetail' }}"><i class="ion-checkmark"></i> {{_ "Presented"}}</a></li>
           {{/with}}
         {{/if}}
         {{#if isInRole 'admin'}}
-          <li><button type="button" class="btn btn-default btn-xs" data-remove>Remove</button></li>
+          <li><button type="button" class="btn btn-default btn-xs" data-remove>{{_ "Remove"}}</button></li>
         {{/if}}
       </ul>
     </div>
