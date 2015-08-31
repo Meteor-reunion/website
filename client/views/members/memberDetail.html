@@ -11,7 +11,7 @@
             <h1>{{profile.name}}</h1>
             <p>{{ truncate profile.bio 140 }}</p>
             <ul class="list-inline">
-              <li><span class="label label-primary">+{{profile.points}} Points</span></li>
+              <li><span class="label label-primary">+{{_ "points_count" count=profile.points}}</span></li>
               {{#each profile.socialLinks}}
                 <li><a href="{{url}}" target="_blank"><i class="ion-social-{{service}}"></i></a></li>
               {{/each}}
@@ -26,17 +26,16 @@
 
     <div class="row">
       <div class="col-md-9">
-        <h4 class="sub-header"><i class="ion-social-rss"></i> Activity</h4>
+        <h4 class="sub-header"><i class="ion-social-rss"></i> {{_ "Activity"}}</h4>
         {{#if member.activities.count}}
         <div class="list-group">
           {{#each member.activities}}
-            <a href="{{ subjectURL }}" class="list-group-item"><i class="{{ icon }}"></i> {{ actionDescription }} <strong>{{ subjectTitle }}</strong> <span class="label label-primary pull-right">+{{pointsAwarded}} Points</span></a>
+            <a href="{{ subjectURL }}" class="list-group-item"><i class="{{ icon }}"></i> {{ actionDescription }} <strong>{{ subjectTitle }}</strong> <span class="label label-primary pull-right">+{{_ "points_count" count=pointsAwarded}}</span></a>
           {{/each}}
         </div>
         {{else}}
           <div class="alert alert-info">
-            <p>
-              {{member.profile.name}} hasn't gained any activity points yet!
+            <p>{{_ "member_no_point" name=member.profile.name}}
             </p>
           </div>
        {{/if}}
@@ -44,7 +43,7 @@
 
       <div class="col-md-3">
         {{#with member}}
-          <h4 class="sub-header">About {{profile.name}}</h4>
+          <h4 class="sub-header">{{_ "about_name" name=profile.name}}</h4>
           {{#each profile.answers }}
             <p>
               <strong>{{question}}</strong>

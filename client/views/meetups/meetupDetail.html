@@ -28,19 +28,19 @@
           {{#unless meetup.isPast}}
             <p>
               {{#if currentUserIsAttendee}}
-                <button type="button" class="btn btn-primary btn-lg" disabled><i class="ion-checkmark"></i> Going</button>
+                <button type="button" class="btn btn-primary btn-lg" disabled><i class="ion-checkmark"></i> {{_ "Going"}}</button>
               {{else}}
                 {{#if currentUser}}
-                    <button type="button" class="btn btn-primary btn-lg" data-action="rsvp"><i class="ion-plus"></i> RSVP</button>
+                    <button type="button" class="btn btn-primary btn-lg" data-action="rsvp"><i class="ion-plus"></i> {{_ "RSVP"}}</button>
                 {{else}}
-                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#login-required-modal"><i class="ion-plus"></i> RSVP</button>
+                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#login-required-modal"><i class="ion-plus"></i> {{_ "RSVP"}}</button>
                 {{/if}}
               {{/if}}
               {{#each meetup.truncatedAttendees}}
                 <a href="{{ pathFor 'memberDetail' }}" title="{{ profile.name }}" data-toggle="tooltip"><img class="img-circle" width=30 height=30 src="{{profile.thumbnailUrl}}"></a>
               {{/each}}
               {{#if displayOverflowAttendees}}
-                <small>and {{ meetup.numberOfOverflowAttendees }} more are going</small>
+                <small>{{_ "numberOfOverflowAttendees" count=meetup.numberOfOverflowAttendees}}</small>
               {{/if}}
             </p>
           {{/unless}}
@@ -51,14 +51,14 @@
 
   <div class="container">
     <ol class="breadcrumb">
-      <li><a href="{{ pathFor 'meetups' }}">All Meetups</a></li>
+      <li><a href="{{ pathFor 'meetups' }}">{{_ "All Meetups"}}</a></li>
       <li class="active">{{ meetup.title }}</li>
     </ol>
   </div>
 
   <div class="container">
     {{#if isInRole 'admin'}}
-      <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#add-topic-modal">Add Topic</button>
+      <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#add-topic-modal">{{_ "Add Topic"}}</button>
     {{/if}}
     <h3>Topics</h3>
 
@@ -75,17 +75,17 @@
               <a href="{{ pathFor 'topicDetail' }}">{{ title }}</a>
             </h4>
             {{#with presenter}}
-              <h5 class="text-muted">Presented by <a href="{{ pathFor 'memberDetail' }}">{{ profile.name }}</a></h5>
+              <h5 class="text-muted">{{_ "Presented by"}} <a href="{{ pathFor 'memberDetail' }}">{{ profile.name }}</a></h5>
             {{/with}}
             <p>
               {{ description }}
             </p>
             <ul class="list-inline text-muted">
               {{#with author}}
-                <li><a href="{{ pathFor 'memberDetail' }}">Suggested by {{profile.name}}</a></li>
+                <li><a href="{{ pathFor 'memberDetail' }}">{{_ "Suggested by"}} {{profile.name}}</a></li>
               {{/with}}
               {{#if numberOfComments}}
-                <li><a href="{{ pathFor 'topicDetail' }}">{{numberOfComments}} Comments</a></li>
+                <li><a href="{{ pathFor 'topicDetail' }}">{{_ "comments_count" count=numberOfComments}}</a></li>
               {{/if}}
             </ul>
           </div>
@@ -95,12 +95,12 @@
       <br>
 
       <p class="text-center">
-        <a href="{{ pathFor 'topics' }}" class="btn btn-default btn-lg"><i class="ion-ios7-chatbubble"></i> Suggest a Topic</a>
+        <a href="{{ pathFor 'topics' }}" class="btn btn-default btn-lg"><i class="ion-ios7-chatbubble"></i> {{_ "Suggest a Topic"}}</a>
       </p>
     {{else}}
       <div class="alert alert-info">
         <p>
-          There are no topics for this meetup yet. <a href="{{ pathFor 'topics' }}">Suggest one?</a>
+          {{_ "There are no topics for this meetup yet"}} <a href="{{ pathFor 'topics' }}">{{_ "Suggest one?"}}</a>
         </p>
       </div>
     {{/if}}
@@ -140,9 +140,9 @@
     <p>
       {{#unless meetup.isPast}}
         {{#if currentUserIsAttendee}}
-          <button type="button" class="btn btn-primary btn-lg" disabled><i class="ion-checkmark"></i> You're Going</button>
+          <button type="button" class="btn btn-primary btn-lg" disabled><i class="ion-checkmark"></i> {{_ "You re Going"}}</button>
         {{else}}
-          <button type="button" class="btn btn-primary btn-lg" data-action="rsvp"><i class="ion-plus"></i> RSVP</button>
+          <button type="button" class="btn btn-primary btn-lg" data-action="rsvp"><i class="ion-plus"></i> {{_ "RSVP"}}</button>
         {{/if}}
       {{/unless}}
     </p>
@@ -155,33 +155,33 @@
           <form data-action="add-topic">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Add a Topic</h4>
+              <h4 class="modal-title">{{_ "Add a Topic"}}</h4>
             </div>
             <div class="modal-body">
               <div class="form-group">
-                <label for="topic">Choose a suggested topic</label>
+                <label for="topic">{{_ "Choose a suggested topic"}}</label>
                 <select class="form-control" id="topic" name="topicId">
-                  <option value="">Choose a topic</option>
+                  <option value="">{{_ "Choose a topic"}}</option>
                   {{#each suggestedTopics}}
                     <option value="{{ _id }}">{{ title }}</option>
                   {{/each}}
                 </select>
               </div>
               <hr>
-              <h5>Or create a new topic:</h5>
+              <h5>{{_ "Or create a new topic:"}}</h5>
               <div class="form-group">
-                <label for="title">Title</label>
-                <input type="text" class="form-control" id="title" name="customTitle" placeholder="Enter a title for your topic">
+                <label for="title">{{_ "Title"}}</label>
+                <input type="text" class="form-control" id="title" name="customTitle" placeholder="{{_ 'Enter a title for your topic'}}">
               </div>
               <div class="form-group">
-                <label for="description">Description</label>
-                <textarea rows="2" class="form-control" id="description" name="customDescription" placeholder="Enter a description for your topic"></textarea>
+                <label for="description">{{_ "Description"}}</label>
+                <textarea rows="2" class="form-control" id="description" name="customDescription" placeholder="{{_ 'Enter a description for your topic'}}"></textarea>
               </div>
               <hr>
               <div class="form-group">
-                <label for="presenter">Presenter</label>
+                <label for="presenter">{{_ "Presenter"}}</label>
                 <select class="form-control" id="presenter" name="presenterId">
-                  <option value="">Choose a member</option>
+                  <option value="">{{_ "Choose a member"}}</option>
                   {{#each members}}
                     <option value="{{ _id }}">{{ profile.name }}</option>
                   {{/each}}
@@ -189,8 +189,8 @@
               </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="button" class="btn btn-link" data-dismiss="modal">{{_ "Close"}}</button>
+              <button type="submit" class="btn btn-primary">{{_ "Submit"}}</button>
             </div>
           </form>
         </div>
