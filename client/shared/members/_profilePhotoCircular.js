@@ -1,4 +1,5 @@
-Template._profilePhotoCircular.thumbUrl = function(userId) {
+Template._profilePhotoCircular.helpers({
+  thumbUrl : function(userId) {
   if(userId) {
     var user = Meteor.users.findOne({_id:userId});
     if(user && user.profile.thumbnailUrl !="default-avatar.png") {
@@ -10,3 +11,4 @@ Template._profilePhotoCircular.thumbUrl = function(userId) {
     return "/default-avatar.png";
   }
 }
+})

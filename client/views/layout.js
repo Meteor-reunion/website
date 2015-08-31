@@ -4,7 +4,7 @@ Template.layout.events({
       requestPermissions: []
     }, function (error) {
       if (error) {
-        alert(error);
+        alert(TAPi18n.__(error));
       }
     });
   },

@@ -12,13 +12,13 @@ Template._commentForm.events({
     };
 
     if (params.body === "") {
-      alert("Please enter a comment!");
+      alert(TAPi18n.__("Please enter a comment!"));
       return false;
     }
 
     Meteor.call("createComment", params, function(error) {
       if(error) {
-        alert(error);
+        alert(TAPi18n.__(error));
         return false;
       }
 

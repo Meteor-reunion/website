@@ -19,9 +19,9 @@ Template.meetupDetail.helpers({
 
   attendeesHeading: function() {
     if (this.meetup && this.meetup.isPast()) {
-      return 'Who Went';
+      return TAPi18n.__("Who Went");
     } else {
-      return "Who's Going";
+      return TAPi18n.__("Who s Going");
     }
   },
 
@@ -36,7 +36,7 @@ Template.meetupDetail.events({
     event.preventDefault();
 
     if (!Meteor.userId()) {
-      alert("Please sign in to RSVP!");
+      alert(TAPi18n.__("Please sign in to RSVP!"));
       return false;
     }
 
@@ -62,12 +62,12 @@ Template.meetupDetail.events({
     };
 
     if (!params.presenterId) {
-      alert("Please choose a presenter for this topic!");
+      alert(TAPi18n.__("Please choose a presenter for this topic!"));
       return;
     }
 
     if (!params.topicId && !params.customTitle) {
-      alert("Please choose a topic or enter a custom topic!");
+      alert(TAPi18n.__("Please choose a topic or enter a custom topic!"));
       return;
     }
 

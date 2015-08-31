@@ -13,7 +13,7 @@ Template._topic.events({
     event.preventDefault();
 
     if (!Meteor.user()) {
-      alert("Log in with Meetup to vote!");
+      alert(TAPi18n.__("Log in with Meetup to vote!"));
       return false;
     }
 
@@ -27,7 +27,7 @@ Template._topic.events({
     event.preventDefault();
 
     if(Roles.userIsInRole(Meteor.userId(), ['admin'])) {
-      if (confirm('Are you sure you want to remove this topic?')) {
+      if (confirm(TAPi18n.__("Are you sure you want to remove this topic"))) {
         Topics.remove({_id: this._id});
       }
     }
