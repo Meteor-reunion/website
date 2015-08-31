@@ -47,7 +47,7 @@ Template.presentations.events({
     $("#btn-add-presentation").text("Next");
     step = 1;
     loaderror = false;
-    console.log("initializing modal");
+    //console.log("initializing modal");
   },
 
   'submit': function(event, template) {
@@ -62,14 +62,14 @@ Template.presentations.events({
            $("a#presentation-embed").oembed(null, {
               embedMethod:"fill",
               onError: function(externalUrl,provider) {
-                console.log("Error loading presentation at url: ", externalUrl);
+                //console.log("Error loading presentation at url: ", externalUrl);
                 $("#error-wrapper").show();
                 loaderror = true;
                 $("#btn-add-presentation").text("Cancel");
                 return false;
               },
               onProviderNotFound: function(url) {
-                console.log("Error - provider not found for ", url);
+                //console.log("Error - provider not found for ", url);
                 $("#error-wrapper").show();
                 loaderror = true;
                 $("#btn-add-presentation").text("Cancel");
@@ -84,7 +84,7 @@ Template.presentations.events({
                 }
               },
               afterEmbed: function(data) {
-                console.log("data", data);
+                //console.log("data", data);
                 if (Meteor.user()) {
                       presObj={};
                       if(data.title) {
@@ -111,7 +111,7 @@ Template.presentations.events({
         });
         }, 500);
     } else {
-        console.log ("presObj ", presObj);
+        //console.log ("presObj ", presObj);
         if(loaderror) {
           $('#add-presentation-modal').modal('hide');
         } else {
@@ -126,7 +126,7 @@ Template.presentations.events({
             var newPresentationID = Presentations.insert(presObj);
             Meteor.setTimeout(function(){
               if (newPresentationID) {
-                  console.log ( "Routing to ", newPresentationID);
+                  //console.log ( "Routing to ", newPresentationID);
                   Router.go("presentationDetail",{_id: newPresentationID});
               }
             }, 500);
@@ -136,7 +136,7 @@ Template.presentations.events({
   },
   'click [data-upload-presentation]': function(event, template) {
       event.preventDefault();
-      alert("This feature is not implemented yet..");
+      alert(TAPi18n.__("This feature is not implemented yet"));
   }
 
 });

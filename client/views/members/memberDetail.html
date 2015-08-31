@@ -30,7 +30,7 @@
         {{#if member.activities.count}}
         <div class="list-group">
           {{#each member.activities}}
-            <a href="{{ subjectURL }}" class="list-group-item"><i class="{{ icon }}"></i> {{ actionDescription }} <strong>{{ subjectTitle }}</strong> <span class="label label-primary pull-right">+{{_ "points_count" count=pointsAwarded}}</span></a>
+            <a href="{{ subjectURL }}" class="list-group-item"><i class="{{ icon }}"></i> {{_ actionDescription}} <strong>{{ subjectTitle }}</strong> <span class="label label-primary pull-right">+{{_ "points_count" count=pointsAwarded}}</span></a>
           {{/each}}
         </div>
         {{else}}

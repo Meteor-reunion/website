@@ -2,8 +2,8 @@ Template.topics.rendered = function() {
 };
 
 Template.topics.helpers({
-  'activeTabClass': function(tab) {
-    if (tab === Router.current().params.tab) {
+  'activeTabClass': function(tabs) {
+    if (tabs === Router.current().params.query.tab) {   
       return 'active';
     }
   }
@@ -23,8 +23,8 @@ Template.topics.events({
       description: $descriptionField.val()
     };
 
-    if (params.title === "") {
-      alert("Please enter a topic title!");
+    if (params.title === "") {      
+      alert(TAPi18n.__("Please enter a topic title!") );
       return false;
     }
 
