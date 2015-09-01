@@ -15,8 +15,8 @@
       <ul class="list-inline">
         {{#with author}}
           <li><a href="{{ pathFor 'memberDetail' }}"><img class="img-circle" width=30 height=30 src="{{profile.thumbnailUrl}}">  {{_ "By"}} {{profile.name}}</a></li>
-        <li>{{_ "points_count" count=profile.points}}</li>
         {{/with}}
+                <li>{{_ "points_count" count=points}}</li>
         {{#if hasComments}}
           <li><a href="{{ pathFor 'topicDetail' }}"> {{_ "comments_count" count=numberOfComments}}</a></li>
         {{/if}}
