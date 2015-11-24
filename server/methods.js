@@ -1,28 +1,22 @@
-var	list=["getCategories","getCheckins","postCheckin","getCities","getOpenEvents","getConcierge","getEvents","postEvent","getEventComments","postEventComment","postEventCommentFlag","getEventCommentLikes","getEventRatings","postEventRating","getEventAttendance","takeEventAttendance","getEverywhereComments","postEverywhereComment","getEverywhereCommunities","postEverywhereCommunity","getEverywhereFollows","getEverywhereFollowers","postEverywhereFollow","postEverywhereContainer","getEverywhereContainers","postEverywhereSeed","postEverywhereEvent","getEverywhereEvents","postEverywhereRsvp","getEverywhereRsvps","getEverywhereSeeds","getActivity","getGroups","getComments","getMembers","postMemberPhoto","postMessage","getOEMBed","getOEMBed","getPhotoComments","postPhotoComment","getPhotoAlbums","getPhoto","getPhotos","postPhotoAlbum","postPhoto","getProfiles","postProfiles","postRSVP","getRSVPs","getOpenVenues","getVenues","getTopics"],
-	MeetupMe = Meteor.npmRequire("meetup-api");
 	var api_key = Meteor.settings[Meteor.settings.environment].meetup.api_key;
 	var group_urlname = Meteor.settings[Meteor.settings.environment].meetup.group_urlname;
-	var meetup = new MeetupMe(api_key);
-  var AsyncMeetup = Async.wrap(meetup, list);
+    var endpoints = JSON.parse(Assets.getText("endpoints.json"));
+
+    function callMeetupEnpoint(endpoint, params, callback){
+        var endpoint = endpoints[endpoint];
+        params.key = api_key;
+
+        HTTP.call(endpoint.method, endpoint.resource, {params: params}, function(error, response){
+            if(error){
+                callback(error);
+            }else{
+                callback(null, response.data);
+            }
+        });
+    }
 
 Meteor.methods({
-	MeetupAPI: function(endpoint, param) {
-		switch(endpoint){
-		case "getEvents":
-			return AsyncMeetup.getEvents(param);
-			break
-		case "getProfiles":
-			return AsyncMeetup.getProfiles(param);
-			break
-		case "getRSVPs":
-			return AsyncMeetup.getRSVPs(param);
-			break
-		case "postRSVP" :
-			AsyncMeetup.postRSVP(param); //Does not seem to be working, can't pass access token as headers
-		default:
-
-		}
-	},
+	MeetupAPI: Meteor.wrapAsync(callMeetupEnpoint),
 
 	fetchProfiles: function(offset) {
 		var adminRoles = ["Organizer", "Co-Organizer"];
@@ -32,7 +26,6 @@ Meteor.methods({
 		console.log ( "Fetching Meetup Member Profiles offset", offset);
 
 		Meteor.call('MeetupAPI', 'getProfiles', {"offset": offset, "page": 200, "group_urlname": group_urlname, "fields":"other_services"}, function(err, response) {
-
 			for (var i = 0, l = response.meta.count; i < l; i++) {
 				var node = response.results[i];
 
