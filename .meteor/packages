@@ -3,15 +3,12 @@
 # 'meteor add' and 'meteor remove' will edit this file for you,
 # but you can also edit it by hand.
 
-meteor-platform
 less
 accounts-ui
 accounts-meetup
 iron:router
 cmather:handlebars-server@0.2.0
 zimme:iron-router-active
-meteorhacks:npm
-npm-container
 service-configuration
 underscore
 reywood:publish-composite
@@ -29,3 +26,17 @@ http
 multiply:iron-router-progress
 tap:i18n
 rzymek:moment-locale-fr
+standard-minifiers
+meteor-base
+mobile-experience
+mongo
+blaze-html-templates
+session
+jquery
+tracker
+logging
+reload
+random
+ejson
+spacebars
+check
