@@ -3,17 +3,14 @@
 # 'meteor add' and 'meteor remove' will edit this file for you,
 # but you can also edit it by hand.
 
-meteor-platform
-less
-accounts-ui
-accounts-meetup
+less@2.7.4
+accounts-ui@1.1.9
+accounts-meetup@1.0.10
 iron:router
 cmather:handlebars-server@0.2.0
 zimme:iron-router-active
-meteorhacks:npm
-npm-container
-service-configuration
-underscore
+service-configuration@1.0.10
+underscore@1.0.9
 reywood:publish-composite
 mrt:moment
 alanning:roles
@@ -21,11 +18,28 @@ mrt:underscore-string-latest
 meteor-vegas:likes-widget
 dburles:collection-helpers
 manuelschoebel:ms-seo
-spiderable
+spiderable@1.0.13
 chfritz:easycron
 matb33:collection-hooks
-http
+http@1.2.8
 
 multiply:iron-router-progress
 tap:i18n
 rzymek:moment-locale-fr
+meteor-base
+mobile-experience
+mongo
+blaze-html-templates
+session
+jquery
+tracker
+logging
+reload
+random
+ejson
+spacebars
+check
+standard-minifier-css
+standard-minifier-js
+meteorhacks:async
+ecmascript

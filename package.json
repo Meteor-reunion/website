@@ -1,0 +1,13 @@
+{
+  "name": "kabarhack",
+  "version": "0.0.1",
+  "description": "kabarhack",
+  "private": true,
+  "scripts": {
+    "start": "meteor run"
+  },
+  "dependencies": {
+    "meteor-node-stubs": "^0.2.3",
+    "meetup-api": "0.1.3"
+  }
+}
